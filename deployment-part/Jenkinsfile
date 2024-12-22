@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/ouiamch88/python-deployment.git'
+                git credentialsId: 'github-credentials', url: 'https://github.com/ouiamch88/python-deployment.git'
             }
         }
         stage('Build Docker image') {
