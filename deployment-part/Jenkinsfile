@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone repository') {
+            steps {
+                git 'https://github.com/ouiamch88/python-deployment.git'
+            }
+        }
+        stage('Build Docker image') {
+            steps {
+                script {
+                    docker.build('scrip')
+                }
+            }
+        }
+        stage('Deploy with Docker Compose') {
+            steps {
+                script {
+                    sh 'docker-compose down'
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+        stage('Tests') {
+            steps {
+                script {
+                    sh 'docker-compose exec python_app pytest'
+                }
+            }
+        }
+    }
+}
+
