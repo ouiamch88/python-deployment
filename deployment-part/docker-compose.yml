@@ -1,0 +1,26 @@
+
+
+services:
+  mysql:
+    image: mysql:8.0.39  # Utilise votre version spécifique de MySQL
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Mot de passe pour l'utilisateur root
+      MYSQL_DATABASE: dataops           # Base de données qui sera créée automatiquement
+      MYSQL_USER: user                  # Utilisateur personnalisé
+      MYSQL_PASSWORD: password          # Mot de passe de l'utilisateur personnalisé
+    ports:
+      - "3306:3306"                     # Mappe le port 3306 du conteneur au port 3306 local
+    volumes:
+      - mysql_data:/var/lib/mysql       # Volume pour persister les données
+  
+  python_app:
+    build:
+      context: .
+    volumes:
+      - .:/app
+    depends_on:
+      - mysql
+    command: python /app/script.py  
+volumes:
+  mysql_data:                           # Déclare un volume pour stocker les données de la base
