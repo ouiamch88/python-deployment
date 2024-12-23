@@ -3,7 +3,6 @@
 # Utilisation de l'image officielle Python comme base
 FROM python:3.9-slim
 
-# Définir le répertoire de travail à l'intérieur du conteneur
 WORKDIR /app
 
 # Copier le fichier requirements.txt dans le conteneur
