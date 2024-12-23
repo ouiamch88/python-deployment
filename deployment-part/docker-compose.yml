@@ -2,13 +2,13 @@
 
 services:
   mysql:
-    image: mysql:8.0.39  # Utilise votre version spécifique de MySQL
+    image: mysql:8.0.39 
     container_name: mysql_container
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword  # Mot de passe pour l'utilisateur root
+      MYSQL_ROOT_PASSWORD: rootpassword 
       MYSQL_DATABASE: dataops           # Base de données qui sera créée automatiquement
-      MYSQL_USER: user                  # Utilisateur personnalisé
-      MYSQL_PASSWORD: password          # Mot de passe de l'utilisateur personnalisé
+      MYSQL_USER: user                  
+      MYSQL_PASSWORD: password          
     ports:
       - "3306:3306"                     # Mappe le port 3306 du conteneur au port 3306 local
     volumes:
